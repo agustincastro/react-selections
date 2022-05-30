@@ -17,7 +17,7 @@ function ResizeCalculator(containerParams) {
 
     const innerX = selection.x() - container.paddingLeft();
     const boxRightBorder = innerX + selection.width();
-    const xWithinContainer = event.clientX - container.offsetLeft();
+    const xWithinContainer = event.clientX - container.offsetLeft() + window.pageXOffset;
     const tooCloseToLeft = xWithinContainer - innerX <= MIN_WIDTH;
 
     if (tooCloseToLeft) {
@@ -46,7 +46,7 @@ function ResizeCalculator(containerParams) {
 
     const innerX = selection.x() - container.paddingLeft();
     const boxRightBorder = innerX + selection.width();
-    const xWithinContainer = event.clientX - container.offsetLeft();
+    const xWithinContainer = event.clientX - container.offsetLeft() + window.pageXOffset;
     const isTooCloseToRight = boxRightBorder - xWithinContainer <= MIN_WIDTH;
 
     if (isTooCloseToRight) {
@@ -79,7 +79,7 @@ function ResizeCalculator(containerParams) {
     const selection = SelectionAccessor(selectionParams);
 
     const innerY = selection.y() - container.paddingTop();
-    const yWithinContainer = getClientY(event) - container.offsetTop();
+    const yWithinContainer = getClientY(event) - container.offsetTop() + window.pageYOffset;
     const boxBottomBorder = innerY + selection.height();
     const tooCloseToTop = yWithinContainer - innerY <= MIN_WIDTH;
 
@@ -111,7 +111,7 @@ function ResizeCalculator(containerParams) {
 
     const innerY = selection.y() - container.paddingTop();
     const selectionBottomBorder = innerY + selection.height();
-    const yWithinContainer = getClientY(event) - container.offsetTop();
+    const yWithinContainer = getClientY(event) - container.offsetTop() + window.pageYOffset;
     const tooCloseToBottom = selectionBottomBorder - yWithinContainer <= MIN_WIDTH;
 
     if (tooCloseToBottom) {

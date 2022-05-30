@@ -69,10 +69,22 @@ class Root extends Component {
   }
 
   render() {
+
+    const containerPosition =
+    {
+      dimensions: { height: 1000, width: 550 },
+      offsets: { left: 50, top: 50 }
+    }
+
     return (
-      <SelectionContainer>
-        {this.state.selections.map(this.renderSelection)}
-      </SelectionContainer>
+      <div style={{padding: '50px'}}>
+
+        <SelectionContainer containerParameters={containerPosition}>
+
+          {this.state.selections.map(this.renderSelection)}
+          <div className='scrollable-container'></div>
+        </SelectionContainer>
+      </div>
     );
   }
 }

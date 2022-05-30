@@ -1,6 +1,6 @@
 import ContainerAccessor from './container';
 import SelectionAccessor from './selection';
-import { getClientY } from '../utils/events';
+import { getClientY, getClientX } from '../utils/events';
 
 function DragCalculator(containerParams) {
   const container = ContainerAccessor(containerParams);
@@ -8,8 +8,8 @@ function DragCalculator(containerParams) {
   const calculate = (event, selectionParams, innerOffsets) => {
     const selection = SelectionAccessor(selectionParams);
 
-    let x = event.clientX - container.offsetLeft() - innerOffsets.left;
-    let y = getClientY(event) - container.offsetTop() - innerOffsets.top;
+    let x = event.clientX - container.offsetLeft() - innerOffsets.left + window.pageXOffset;
+    let y = getClientY(event) - container.offsetTop() - innerOffsets.top + window.pageYOffset;
 
     y = y < 0 ? 0 : y;
     x = x < 0 ? 0 : x;
